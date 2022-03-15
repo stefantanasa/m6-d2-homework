@@ -16,7 +16,7 @@ const initialization = async () => {
   try {
     await pool.query("select 1+1");
     server.listen(port, () => {
-      console.log("Server works on port ", port);
+      console.log("💚 Server works on port ", port);
       testConnection();
     });
 
