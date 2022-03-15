@@ -13,7 +13,7 @@ productRouter.get("/", async (req, res, next) => {
 productRouter.post("/", async (req, res, next) => {
   try {
     const data = await pool.query(
-      "INSERT INTO products(product_name, product_brand, product_image, product_price, product_category) VALUES($1,$2,$3,$4,$5) returning *;",
+      "INSERT INTO products(product_name, product_brand, product_image_url, product_price, product_category) VALUES($1,$2,$3,$4,$5) returning *;",
       [
         req.body.name,
         req.body.brand,
@@ -25,19 +25,20 @@ productRouter.post("/", async (req, res, next) => {
     console.log("this is data: ", data);
     const product = data.rows[0];
 
-    res.status(201).send(JSON.parse(product));
+    res.status(201).send(product);
   } catch (error) {
     res.status(500).send({ message: error.message });
   }
 });
 
-productRouter.delete("/:productId", async (req, res, next) => {
+productRouter.put("/:productId", async (req, res, next) => {
   try {
+    const data = pool.query("");
   } catch (error) {
     res.status(500).send({ message: error.message });
   }
 });
-productRouter.put("/:productId", async (req, res, next) => {
+productRouter.delete("/:productId", async (req, res, next) => {
   try {
   } catch (error) {
     res.status(500).send({ message: error.message });
