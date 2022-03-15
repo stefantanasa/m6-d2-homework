@@ -11,4 +11,14 @@ const pool = new Pool({
   port: PGPORT,
 });
 
+export const testConnection = async () => {
+  try {
+    await pool.query("SELECT 3+1 AS result;");
+
+    console.log("is connected!");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export default pool;
